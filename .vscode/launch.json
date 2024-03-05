@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "C/C++: g++.exe Compilar y depurar el archivo activo", //nombre de la configuracion
+            "type": "cppdbg", //tipo de configuracion
+            "request": "launch", //tipo de solicitud que se hace al depurador 
+            "program": "${fileDirname}\\exes\\${fileBasenameNoExtension}.exe", //archivo ejecutable que se depura 
+            "args": [], //argumentos que se pasan al programa 
+            "stopAtEntry": false, //detenerse en la entrada 
+            "cwd": "${workspaceFolder}", //directorio de trabajo
+            "environment": [], //variables de entorno
+            "externalConsole": true, //consola externa
+            "MIMode": "gdb", //modo de depuración 
+            "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe", //ruta del depurador 
+            "setupCommands": [ //comandos de configuración
+            
+                {
+                    "description": "Habilitar la impresión con sangría para gdb", //descripcion del comando 
+                    "text": "-enable-pretty-printing", //comando que se ejecuta 
+                    "ignoreFailures": true //ignorar errores 
+                },
+                {
+                    "description": "Establecer tipo de desensamblado en Intel", //descripcion del comando
+                    "text": "-gdb-set disassembly-flavor intel", //comando que se ejecuta
+                    "ignoreFailures": true //ignorar errores
+                }
+            ],
+            "preLaunchTask": "C/C++: g++.exe compilar archivo activo" //tarea que se ejecuta antes de depurar
+        }
+    ],
+    "version": "2.0.0"
+}
