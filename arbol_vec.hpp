@@ -172,5 +172,90 @@ void ArbolVec<T>::eliminarHijoDrcho(nodo n){
         --numNodos;
 }
 
+template <typename T>
+inline void ArbolVec<T>::eliminarRaiz(){
+    assert(numNodos == 1); //el árbol debe tener un único nodo
+    numNodos = 0; //el árbol se convierte en vacío
+}
+
+template <typename T>
+inline bool ArbolVec<T>::arbolVacio() const{
+    return (numNodos == 0);
+}
+
+template <typename T>
+inline const T& ArbolVec<T>::elemento(nodo n) const{
+    assert(n >= 0 && n < numNodos); //n debe ser un nodo válido
+    return nodos[n].elto; //devolvemos el elemento del nodo n
+}
+
+template <typename T>
+inline typename ArbolVec<T>::nodo ArbolVec<T>::raiz() const{
+    return (numNodos > 0) ? 0 : NODO_NULO; //la raíz es el primer nodo
+}
+
+template <typename T>
+inline T& ArbolVec<T>::elemento(nodo n){
+    assert(n >= 0 && n < numNodos); //n debe ser un nodo válido
+    return nodos[n].elto; //devolvemos el elemento del nodo n
+}
+
+template <typename T>
+inline typename ArbolVec<T>::nodo ArbolVec<T>::raiz()const{
+    return (numNodos > 0) ? 0 : NODO_NULO; //la raíz es el primer nodo
+}
+
+template <typename T>
+inline typename ArbolVec<T>::nodo ArbolVec<T>::padre(nodo n) const{
+    assert(n >= 0 && n < numNodos); //n debe ser un nodo válido
+    return nodos[n].padre; //devolvemos el padre del nodo n
+}
+
+template <typename T> inline 
+typename ArbolVec<T>::nodo ArbolVec<T>::hijoIzqdo(nodo n) const{
+    assert(n >= 0 && n < numNodos); //n debe ser un nodo válido
+    return nodos[n].hizq; //devolvemos el hijo izquierdo del nodo n
+}
+
+template <typename T> inline
+typename ArbolVec<T>::nodo ArbolVec<T>::hijoDrcho(nodo n) const{
+    assert(n >= 0 && n < numNodos); //n debe ser un nodo válido
+    return nodos[n].hder; //devolvemos el hijo derecho del nodo n
+}
+
+template <typename T>
+ArbolVec<T>::ArbolVec(const ArbolVec<T>& A): //Constructor de copia 
+    nodos(new celda[A.maxNodos]),
+    maxNodos(A.maxNodos),
+    numNodos(A.numNodos){
+        for (nodo n = 0; n < numNodos; n++){
+            nodos[n] = A.nodos[n];
+        }
+    }
+
+template <typename T>
+inline ArbolVec<T>::~ArbolVec(){
+    delete[] nodos; //liberamos la memoria dinámica reservada para el vector de nodos
+}
+
+template <typename T>
+ArbolVec<T>& ArbolVec<T>::operator =(const ArbolVec<T>& A){
+
+    if (this != &A) // Evitar autoasignación.
+    {
+    // Destruir el vector y crear uno nuevo si es necesario.if (maxNodos != A.maxNodos)
+    {
+    delete[] nodos;
+    maxNodos = A.maxNodos;
+    nodos = new celda[maxNodos];
+    }
+    // Copiar el vector.
+    numNodos = A.numNodos;
+    for (nodo n = 0; n <= numNodos-1; n++)
+        nodos[n] = A.nodos[n];
+    }
+
+    return *this; //devolvemos el objeto actual
+}
 
 #endif
