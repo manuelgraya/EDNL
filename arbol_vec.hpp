@@ -122,13 +122,55 @@ void ArbolVec<T>::eliminarHijoIzqdo(nodo n){
 
     assert(n >= 0 && n < numNodos); //n debe ser un nodo válido
     hizqdo = nodos[n].hizq; //obtenemos el hijo izquierdo de n
+    assert(hizqdo != NODO_NULO); //n debe tener hijo izquierdo
     assert(nodos[hizqdo].hizq == NODO_NULO && nodos[hizqdo].hder == NODO_NULO); //el hijo izquierdo de n debe ser una hoja
 
     if (hizqdo != numNodos-1)
     {
-        nodos[hizqdo] = nodos [numNodos-1];
-        //diapositiva 101
+    // Mover el último nodo a la posición del hijo izqdo.nodos[hizqdo] = nodos[numNodos-1];
+    // Actualizar la posición del hijo (izquierdo o derecho)// en el padre del nodo movido.
+    if (nodos[nodos[hizqdo].padre].hizq == numNodos-1)nodos[nodos[hizqdo].padre].hizq = hizqdo;
+    else
+    nodos[nodos[hizqdo].padre].hder = hizqdo;
+    // Si el nodo movido tiene hijos,
+    // actualizar la posición del padre.
+    if (nodos[hizqdo].hizq != NODO_NULO)
+    nodos[nodos[hizqdo].hizq].padre = hizqdo;
+    if (nodos[hizqdo].hder != NODO_NULO)
+    nodos[nodos[hizqdo].hder].padre = hizqdo;
     }
+    nodos[n].hizq = NODO_NULO;
+        --numNodos;
 }
+
+template <typename T>
+void ArbolVec<T>::eliminarHijoDrcho(nodo n){
+
+    nodo hdrcho; //nodo hijo derecho de n
+
+    assert(n >= 0 && n < numNodos); //n debe ser un nodo válido
+    hizqdo = nodos[n].hder; //obtenemos el hijo derecho de n
+    assert(hdrcho != NODO_NULO); //n debe tener hijo derechod
+    assert(nodos[hdrecho].hizq == NODO_NULO && nodos[hdrcho].hder == NODO_NULO); //el hijo derecho de n debe ser una hoja
+
+    if (hdrcho != numNodos-1)
+    {
+    // Mover el último nodo a la posición del hijo izqdo.nodos[hizqdo] = nodos[numNodos-1];
+    // Actualizar la posición del hijo (izquierdo o derecho)// en el padre del nodo movido.
+    if (nodos[nodos[hdrcho].padre].hizq == numNodos-1)ç
+    nodos[nodos[hdrcho].padre].hizq = hdrcho;
+    else
+    nodos[nodos[hdrcho].padre].hder = hdrcho;
+    // Si el nodo movido tiene hijos,
+    // actualizar la posición del padre.
+    if (nodos[hdrcho].hizq != NODO_NULO)
+    nodos[nodos[hdrcho].hizq].padre = hizqdo;
+    if (nodos[hdrcho].hder != NODO_NULO)
+    nodos[nodos[hdrcho].hder].padre = hizqdo;
+    }
+    nodos[n].hder = NODO_NULO;
+        --numNodos;
+}
+
 
 #endif
