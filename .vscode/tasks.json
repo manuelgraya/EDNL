@@ -1,28 +1,44 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
-            "type": "cppbuild", //tipo de tarea
-            "label": "C/C++: gcc.exe compilar archivo activo", //   nombre de la tarea
-            "command": "C:\\MinGW\\bin\\gcc.exe", //comando que se ejecuta
+            "label": "Compilar fecha.cpp",
+            "type": "shell",
+            "command": "g++",
             "args": [
-                "-fdiagnostics-color=always",//colorea los errores
-                "-g", //genera el archivo ejecutable
-                "${file}", //archivo que se compila
-                "-o", //nombre del archivo ejecutable
-                "${fileDirname}\\${fileBasenameNoExtension}.exe" //donde se crea el archivo ejecutable
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
+            ],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Compilación de archivo activo usando g++"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++.exe compilar archivo activo",
+            "command": "C:/msys64/mingw64/bin/g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "C:\\MinGW\\bin" //directorio donde se ejecuta el comando
+                "cwd": "C:/msys64/mingw64/bin"
             },
             "problemMatcher": [
-                "$gcc" //tipo de errores que se muestran
+                "$gcc"
             ],
-            "group": { //grupo de tareas
-                "kind": "build", //tipo de tarea
-                "isDefault": true //tarea por defecto
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
-            "detail": "Tarea generada por el depurador." //descripcion de la tarea
+            "detail": "Tarea generada por el depurador."
         }
-    ],
-    "version": "2.0.0" //version del archivo
+    ]
 }
