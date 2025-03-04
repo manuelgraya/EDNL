@@ -43,12 +43,6 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "chrono": "cpp",
-        "ratio": "cpp",
-        "bit": "cpp",
-        "compare": "cpp",
-        "concepts": "cpp",
-        "cstring": "cpp",
-        "string_view": "cpp",
-        "numbers": "cpp"
+        "ratio": "cpp"
     }
 }
